@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TimeTracker - Settings</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 0 16px;
+    }
+
+    h1 {
+      font-size: 22px;
+      color: #2c3e50;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      color: #888;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      font-size: 15px;
+      color: #2c3e50;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #ecf0f1;
+    }
+
+    .site-list {
+      list-style: none;
+      margin-bottom: 12px;
+    }
+
+    .site-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px;
+      background: #f8f9fa;
+      border-radius: 5px;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+
+    .site-list li span {
+      font-weight: bold;
+    }
+
+    .remove-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 3px 8px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+
+    .remove-btn:hover {
+      background: #c0392b;
+    }
+
+    .add-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .add-row input {
+      flex: 1;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .add-row input:focus {
+      border-color: #2980b9;
+    }
+
+    .add-btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .btn-green { background: #27ae60; }
+    .btn-green:hover { background: #219a52; }
+    .btn-red { background: #e74c3c; }
+    .btn-red:hover { background: #c0392b; }
+
+    .data-section {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .data-btn {
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      background: white;
+    }
+
+    .data-btn:hover {
+      background: #ecf0f1;
+    }
+
+    .danger-btn {
+      background: #fadbd8;
+      border-color: #e74c3c;
+      color: #c0392b;
+    }
+
+    .danger-btn:hover {
+      background: #f1948a;
+      color: white;
+    }
+
+    #statusMsg {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #27ae60;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚙ TimeTracker Settings</h1>
+    <p class="subtitle">Manage your productive and unproductive site lists</p>
+
+    <!-- productive sites -->
+    <div class="section">
+      <h2>✅ Productive Sites</h2>
+      <ul class="site-list" id="productiveList"></ul>
+      <div class="add-row">
+        <input type="text" id="productiveInput" placeholder="e.g. github.com" />
+        <button class="add-btn btn-green" onclick="addSite('productive')">+ Add</button>
+      </div>
+    </div>
+
+    <!-- unproductive sites -->
+    <div class="section">
+      <h2>❌ Unproductive Sites</h2>
+      <ul class="site-list" id="unproductiveList"></ul>
+      <div class="add-row">
+        <input type="text" id="unproductiveInput" placeholder="e.g. instagram.com" />
+        <button class="add-btn btn-red" onclick="addSite('unproductive')">+ Add</button>
+      </div>
+    </div>
+
+    <!-- data management -->
+    <div class="section">
+      <h2>🗄 Data Management</h2>
+      <div class="data-section">
+        <button class="data-btn" onclick="exportData()">📥 Export Data (JSON)</button>
+        <button class="data-btn danger-btn" onclick="clearAllData()">🗑 Clear All Data</button>
+      </div>
+      <div id="statusMsg"></div>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
